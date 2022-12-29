@@ -1,0 +1,65 @@
+﻿@page "/fetchdata"
+@inject HttpClient Http
+
+<PageTitle>Articles</PageTitle>
+
+<h1>Articles</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (articles == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Image</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var article in articles.data)
+            {
+	            string url = "http://localhost:1337" + article.mainImage.url;
+	            <tr>
+                    <td>@article.title</td>
+                    <td>@article.content</td>
+                    <td><img src="@url" width="300"/></td>
+	                <td>@article.publishedAt.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Response? articles;
+
+    protected override async Task OnInitializedAsync()
+    {
+        articles = await Http.GetFromJsonAsync<Response>("api/articles?populate=mainImage,extraImages,user");
+    }
+
+    public class Response
+    {
+	    public List<Article> data { get; set; }
+    }
+
+	public class Article
+	{
+        public string title { get; set; }
+        public string content { get; set; }
+        public DateTime publishedAt { get; set; }
+        public Image mainImage { get; set; }
+	}
+
+	public class Image
+	{
+        public string url { get; set; }
+	}
+}
