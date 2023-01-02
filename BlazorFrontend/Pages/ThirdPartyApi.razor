@@ -1,0 +1,44 @@
+﻿@page "/3rdparty"
+@inject HttpClient Http
+
+<PageTitle>Quotes</PageTitle>
+
+<h1 class="text-center">Quotes</h1>
+
+<p class="text-center">This component demonstrates fetching data from the 3rd party api 'DummyJson'.</p>
+
+@if (_quotes == null)
+{
+	<p><em>Loading...</em></p>
+}
+else
+{
+	@foreach (var quote in _quotes.Quotes)
+	{
+		<div class="card w-50 m-1">
+			<div class="card-title h1 text-center">@quote.Quote</div>
+			<div class="card-footer">Quote by: @quote.Author</div>
+		</div>
+	}
+}
+
+@code {
+	private ResponseThirdPartyApi? _quotes;
+
+	protected override async Task OnInitializedAsync()
+	{
+		_quotes = await Http.GetFromJsonAsync<ResponseThirdPartyApi>("https://dummyjson.com/quotes");
+	}
+
+	public class ResponseThirdPartyApi
+	{
+		public List<SingleQuote> Quotes { get; set; }
+	}
+
+	public class SingleQuote
+	{
+		public string Quote { get; set; }
+		public string Author { get; set; }
+	}
+
+}
