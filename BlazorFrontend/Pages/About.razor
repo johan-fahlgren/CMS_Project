@@ -1,0 +1,39 @@
+﻿@page "/about"
+@inject HttpClient Http
+
+<PageTitle>About us</PageTitle>
+
+
+@if (_aboutUs == null)
+{
+	<p><em>Loading...</em></p>
+}
+else
+{
+	<div class="card w-50 m-1">
+		<div class="card-title h1 text-center">@_aboutUs.Data.Title</div>
+		<div class="card-body d-flex flex-column align-items-center justify-content-center">
+			<span style="white-space: pre-line">@_aboutUs.Data.Description</span>
+		</div>
+	</div>
+}
+
+@code {
+	private ResponseAboutUs? _aboutUs;
+
+	protected override async Task OnInitializedAsync()
+	{
+		_aboutUs = await Http.GetFromJsonAsync<ResponseAboutUs>("api/about-us");
+	}
+
+	public class ResponseAboutUs
+	{
+		public AboutUs Data { get; set; }
+	}
+
+	public class AboutUs
+	{
+		public string Title { get; set; }
+		public string Description { get; set; }
+	}
+}
