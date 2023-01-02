@@ -50,15 +50,23 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Image: Hero Image
+		/// HeaderImage: Add a header image
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "11.0.0+d713b38")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("image")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops Image => global::Umbraco.Cms.Web.Common.PublishedModels.HeaderProperties.GetImage(this, _publishedValueFallback);
+		[ImplementPropertyType("headerImage")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops HeaderImage => global::Umbraco.Cms.Web.Common.PublishedModels.HeaderProperties.GetHeaderImage(this, _publishedValueFallback);
 
 		///<summary>
-		/// Title: Entre a title for this page
+		/// Subtitle: Enter a subtitle for this page
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "11.0.0+d713b38")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("subtitle")]
+		public virtual string Subtitle => global::Umbraco.Cms.Web.Common.PublishedModels.HeaderProperties.GetSubtitle(this, _publishedValueFallback);
+
+		///<summary>
+		/// Title: Enter a title for this page
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "11.0.0+d713b38")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]

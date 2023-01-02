@@ -2,29 +2,36 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.HomePage>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
-	Layout = null;
+	Layout = "Master.cshtml";
 }
+ 
+    <!-- Main Content-->
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <!-- Post preview-->
+            <div class="post-preview">
+                <a href="post.html">
+                    <h2 class="post-title">Posts, posts, posts!</h2>
+                    <h3 class="post-subtitle">Read until your eyes bleed, no refunds!</h3>
+                </a>
+                <p class="post-meta">
+                    Posted by
+                    <a href="#!">Admin@cms.com</a>
+                    on 2 January 2023
+                </p>
+            </div>
+            
+            @await Html.PartialAsync("~/Views/Partials/Post.cshtml")
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta content="IE=edge,chrome=1' http-equiv='X-UA-Compatible">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title></title>
-    <!--css here-->
-    <!--<link rel="stylesheet" type="text/css" href="/css/style.css">-->
-</head>
-<body>
-    
-   <h1>@Model.Name</h1>
-   <h1>@Model.Title</h1>
+            <!-- Divider-->
+            <hr class="my-4" />
+            <!-- Pager-->
+            <div class="d-flex justify-content-end mb-4">
+                <a class="btn btn-primary text-uppercase" href="#!">I don't work →</a>
+            </div>
+        </div>
+    </div>
+</div>
 
-   @if (Model.Image != null)
-   {
-        <img style="width: 100%" src="@Model.Image.Url()" alt="hero image"/>
-   }
-
-</body>
-</html>
 
