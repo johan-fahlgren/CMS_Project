@@ -34,8 +34,9 @@ ____
 > **Strapi**
 > 1. Start the Strapi-backend server by doing the following
 > 2. `cd` into the `strapi-backend` folder
-> 3. use the `npm run develop` command
-> 4. When it has started up you can login using the credentials below
+> 3. use `npm install` to restore dependencies
+> 4. use the `npm run develop` command
+> 5. When it has started up you can login using the credentials below
 
 > **Blazor**
 > 1. When the Strapi server is up and running you can start the Blazor project.
